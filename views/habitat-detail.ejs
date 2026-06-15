@@ -1,0 +1,28 @@
+<%- include('partials/header') %>
+
+<section class="page-hero">
+  <div class="container">
+    <h1><%= habitat.name %></h1>
+    <p><%= habitat.description %></p>
+  </div>
+</section>
+
+<section class="experiences-list">
+  <div class="container">
+    <h2>Experiences & Exhibits</h2>
+    <div class="experience-grid">
+      <% experiences.forEach(exp => { %>
+      <div class="experience-card">
+        <img src="/images/<%= exp.image %>" alt="<%= exp.name %>" />
+        <div class="card-body">
+          <h3><%= exp.name %></h3>
+          <p><%= exp.description %></p>
+        </div>
+      </div>
+      <% }) %>
+    </div>
+    <a href="/habitats" class="btn btn-outline">← Back to Habitats</a>
+  </div>
+</section>
+
+<%- include('partials/footer') %>

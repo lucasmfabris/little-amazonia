@@ -1,0 +1,24 @@
+<%- include('partials/header') %>
+
+<section class="page-hero">
+  <div class="container">
+    <span class="event-category"><%= event.category %></span>
+    <h1><%= event.title %></h1>
+    <p>📅 <%= new Date(event.event_date).toDateString() %></p>
+    <% if (event.event_date < today) { %>
+      <span class="badge-past">This event has already taken place</span>
+    <% } else { %>
+      <span class="badge-upcoming">Upcoming Event</span>
+    <% } %>
+  </div>
+</section>
+
+<section class="event-detail-section">
+  <div class="container">
+    <img src="/images/<%= event.image %>" alt="<%= event.title %>" class="event-detail-img" />
+    <p class="event-description"><%= event.description %></p>
+    <a href="/events" class="btn btn-outline">← Back to Events</a>
+  </div>
+</section>
+
+<%- include('partials/footer') %>

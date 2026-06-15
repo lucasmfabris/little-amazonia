@@ -1,0 +1,32 @@
+<%- include('partials/header') %>
+
+<section class="page-hero">
+  <div class="container">
+    <h1>Jungle Animal Quiz</h1>
+    <p>Can you identify the animals of Little Amazonia? Test your knowledge!</p>
+  </div>
+</section>
+
+<section class="activity-section">
+  <div class="container">
+    <div id="quiz-container">
+      <div id="quiz-info">
+        <span>Question <span id="current-q">1</span> of <span id="total-q"></span></span>
+        <span>Score: <span id="score">0</span></span>
+      </div>
+      <div id="question-box">
+        <img id="quiz-image" src="" alt="Guess the animal" />
+        <h2 id="question-text"></h2>
+        <div id="options-grid"></div>
+      </div>
+      <div id="result-box" class="hidden">
+        <h2>Quiz Complete! </h2>
+        <p>You scored <span id="final-score"></span> out of <span id="final-total"></span></p>
+        <button id="restart-btn" class="btn">Play Again</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script src="/js/activity.js"></script>
+<%- include('partials/footer') %>

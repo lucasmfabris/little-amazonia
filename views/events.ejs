@@ -1,0 +1,61 @@
+<%- include('partials/header') %>
+
+<section class="page-hero">
+  <div class="container">
+    <h1>Park Events</h1>
+    <p>Discover our exciting events throughout the year</p>
+  </div>
+</section>
+
+<section class="events-section">
+  <div class="container">
+
+    <!-- Year and category filters -->
+    <div class="events-filters">
+      <div class="filter-group">
+        <label for="year-select">Year:</label>
+        <select id="year-select">
+          <option value="2025" <%= year == 2025 ? 'selected' : '' %>>2025</option>
+          <option value="2026" <%= year == 2026 ? 'selected' : '' %>>2026</option>
+        </select>
+      </div>
+      <div class="filter-group">
+        <label for="category-select">Category:</label>
+        <select id="category-select">
+          <option value="" <%= category === '' ? 'selected' : '' %>>All Categories</option>
+          <option value="Seasonal Celebration" <%= category === 'Seasonal Celebration' ? 'selected' : '' %>>Seasonal Celebration</option>
+          <option value="Educational Talk" <%= category === 'Educational Talk' ? 'selected' : '' %>>Educational Talk</option>
+          <option value="Family Activity" <%= category === 'Family Activity' ? 'selected' : '' %>>Family Activity</option>
+          <option value="Night Experience" <%= category === 'Night Experience' ? 'selected' : '' %>>Night Experience</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Events list (populated by AJAX) -->
+    <div id="events-list" class="events-grid">
+      <% if (events.length === 0) { %>
+        <p class="no-results">No events found for this selection.</p>
+      <% } else { %>
+        <% events.forEach(event => { %>
+        <a href="/events/<%= event.id %>" class="event-card <%= event.event_date < today ? 'past-event' : '' %>">
+          <img src="/images/<%= event.image %>" alt="<%= event.title %>" />
+          <div class="card-body">
+            <span class="event-category"><%= event.category %></span>
+            <h3><%= event.title %></h3>
+            <p class="event-date">📅 <%= new Date(event.event_date).toDateString() %></p>
+            <% if (event.event_date < today) { %>
+              <span class="badge-past">Past Event</span>
+            <% } else { %> 
+              <span class="badge-upcoming">Upcoming</span>
+            <% } %>
+          </div>
+        </a>
+        <% }) %>
+      <% } %>
+    </div>
+
+  </div>
+</section>
+
+<script src="/js/events.js"></script>
+<%- include('partials/footer') %>

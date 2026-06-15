@@ -1,0 +1,56 @@
+<%- include('partials/header') %>
+
+<!-- Hero section -->
+<section class="hero">
+  <div class="hero-content">
+    <h1>Welcome to Little Amazonia</h1>
+    <p>Explore the wonders of nature across four incredible wildlife habitats</p>
+    <div class="opening-times">
+      <span>🕘 Open Every Day: 9am – 6pm</span>
+    </div>
+    <a href="/habitats" class="btn">Explore Habitats</a>
+  </div>
+</section>
+
+<!-- Search bar (AJAX) -->
+<section class="search-section">
+  <div class="container">
+    <h2>Search Our Habitats</h2>
+    <div class="search-bar">
+      <input type="text" id="search-input" placeholder="Search habitats..." />
+      <button id="search-btn">Search</button>
+    </div>
+    <div id="search-results" class="search-results"></div>
+  </div>
+</section>
+
+<!-- Habitats preview -->
+<section class="habitats-preview">
+  <div class="container">
+    <h2>Our Habitats</h2>
+    <div class="habitat-grid">
+      <% habitats.forEach(habitat => { %>
+      <div class="habitat-card">
+        <img src="/images/<%= habitat.image %>" alt="<%= habitat.name %>" />
+        <div class="card-body">
+          <h3><%= habitat.name %></h3>
+          <p><%= habitat.description %></p>
+          <a href="/habitats/<%= habitat.id %>" class="btn">Discover More</a>
+        </div>
+      </div>
+      <% }) %>
+    </div>
+  </div>
+</section>
+
+<!-- Opening times banner -->
+<section class="times-banner">
+  <div class="container">
+    <h2>🕘 Park Opening Times</h2>
+    <p>We are open <strong>every day of the year</strong>, including bank holidays.</p>
+    <p class="times-big">9:00am – 6:00pm</p>
+  </div>
+</section>
+
+<script src="/js/search.js"></script>
+<%- include('partials/footer') %>
