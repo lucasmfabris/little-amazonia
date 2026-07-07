@@ -9,12 +9,23 @@ const __dirname = path.dirname(__filename);
 export const router = express.Router();
 
 // Connect to the database
-const db = new sqlite3.Database(path.join(__dirname, '..', 'little-amazonia.db'));
+const dbPath = path.join(__dirname, '..', 'little-amazonia.db');
+console.log('Database path:', dbPath);
+
+const db = new sqlite3.Database(dbPath, (err) => {
+  if (err) console.error('Database connection error:', err);
+  else console.log('Connected to database successfully');
+});
 
 // Home page
 router.get('/', (req, res) => {
+  console.log('GET /');
   db.all('SELECT * FROM habitats', [], (err, habitats) => {
-    if (err) return res.status(500).send('Database error');
+    if (err) {
+      console.error(err);
+      return res.status(500).send('Database error');
+    }
+    console.log('Habitats loaded:', habitats.length);
     res.render('index', { habitats });
   });
 });
